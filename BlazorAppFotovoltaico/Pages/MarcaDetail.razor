@@ -1,0 +1,26 @@
+﻿@page "/marcadetail/{Id:int}"
+<h3>MarcaDetail</h3>
+<p>@miaMarca.NomeMarca</p>
+<button @onclick="Add">aggiungi </button>
+
+<p>Nuova Marca ID @x.IdMarca</p>
+
+@code {
+    
+    Marca x = new Marca();
+
+    [Parameter]
+    public int Id { get; set; }
+
+
+    public void Add()
+    {
+        x = new Marca("EE", "Italia", true);
+
+    }
+
+   
+
+    public Marca miaMarca { get { return new Marca(Id); } }
+
+}

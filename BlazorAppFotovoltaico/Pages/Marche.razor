@@ -1,0 +1,34 @@
+﻿@page "/marche"
+<h3>Marche</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Codice univoco</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Sede</th>
+            <th scope="col">Fornitore abituale</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ListaDelleMarche)
+        {
+            <tr>
+                <th scope="row"><a href="/marcadetail/@item.IdMarca">Dettagli</a>Dettaglio Marca</th>
+                <td>@item.NomeMarca</td>
+                <td>@item.NazioneSede</td>
+                <td>@item.Abituale.ToString()</td>
+            </tr>
+        }  
+    </tbody>
+</table>
+
+@code {
+    public List<Marca> ListaDelleMarche { 
+        get { 
+            return Marca.ListaMarche; 
+        }
+    }
+
+
+}

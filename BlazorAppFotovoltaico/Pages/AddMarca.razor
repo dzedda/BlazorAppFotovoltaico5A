@@ -1,0 +1,22 @@
+﻿@page "/addmarca"
+@inject NavigationManager Navigation
+<h3>AddMarca</h3>
+<EditForm Model="@MyMarca" OnValidSubmit="ActionSave">
+    <InputText id="nome" @bind-Value="MyMarca.NomeMarca" />
+    <InputText id="nazione" @bind-Value="MyMarca.NazioneSede" />
+    <InputCheckbox id="abituale" @bind-Value="MyMarca.Abituale" />
+    <button type="submit" class="btn btn-primary">Salva</button>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public Marca MyMarca { get; set; } = new Marca();
+
+    void ActionSave(){
+        Marca x = new Marca(MyMarca.NomeMarca, MyMarca.NazioneSede, MyMarca.Abituale);
+        Navigation.NavigateTo("marche");
+
+    }
+
+}
