@@ -1,0 +1,60 @@
+﻿<h3>MarcaDetail</h3>
+@page "/filtermarca/"
+<p>@miaMarca.NazioneSede</p>
+<!--Popola la select-->
+<select class="form-select" aria-label="Default select example" @bind="Id">
+    <option selected value="0">Filtra per nazione</option>
+    <option value="1">Sharp</option>
+    <option value="2">Panasonic</option>
+    <option value="3">Huawei</option>
+    <option value="10">Italia</option>
+
+</select>
+<!--Popola la select pescando dati dal database-->
+<select name="selfs" class="form-select" aria-label="Default select example" @bind="Id">
+    <option selected value="0">Filtra per nazione</option>
+    @foreach (var item in ListaMarche)
+    {
+        <option value="@item.IdMarca">@item.NomeMarca</option>
+    }  
+    
+</select>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+        <h5 class="card-title">@miaMarca.NomeMarca</h5>
+        <h6 class="card-subtitle mb-2 text-muted">@miaMarca.NazioneSede</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="/marcadetail/@miaMarca.IdMarca" class="card-link">Dettagli</a>    
+  </div>
+</div>
+
+
+@code {
+    private int id;
+
+    public int Id
+    {
+        get { return id; }
+        set { id = value;
+            miaMarca = new Marca(id);
+        }
+    }
+
+    private List<Marca> listaMarche;
+
+    public List<Marca> ListaMarche
+    {
+        get {
+            listaMarche = Marca.ListaMarche; 
+            return listaMarche; }
+        
+    }
+    
+    
+    Marca x = new Marca();
+    
+    Marca miaMarca = new Marca();
+
+
+}
